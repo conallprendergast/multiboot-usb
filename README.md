@@ -33,6 +33,7 @@ A hybrid MBR is neccessary in order to trick some legacy devices into booting fr
     gdisk /dev/sdX
     
 Type "r" to enter "Recovery/Transformation" mode.
+
 Type "h" to create a hybrid MBR and follow to instructions. Add all our partitions to the new MBR and set the bootable flag on the last one.
 
 
@@ -41,16 +42,16 @@ Grub will be installed twice, once for legacy booting, and once for EFI booting.
 
 * Mount the second and third partitions on local filesystem (on folders "efi" and "boot" respectively)
     
-    mkdir efi && mount /dev/sdX2 efi
-    mkdir boot && mount /dev/sdX3 boot
+        mkdir efi && mount /dev/sdX2 efi
+        mkdir boot && mount /dev/sdX3 boot
     
 * Install grub for legacy booting (note: grub-install may be named grub2-install on some systems)
 
-    grub-install --removable --boot-directory=boot --efi-directory=efi /dev/sdX --target=i386-pc
+        grub-install --removable --boot-directory=boot --efi-directory=efi /dev/sdX --target=i386-pc
     
 * Install grub for EFI booting (note: grub-install may be named grub2-install on some systems)
 
-    grub-install --removable --boot-directory=boot --efi-directory=efi /dev/sdX --target=x86_64-efi
+        grub-install --removable --boot-directory=boot --efi-directory=efi /dev/sdX --target=x86_64-efi
 
 
 ## Step 3.1 - Testing Grub
