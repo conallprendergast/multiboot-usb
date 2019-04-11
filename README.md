@@ -32,15 +32,15 @@ A hybrid MBR is neccessary in order to trick some legacy devices into booting fr
 
     gdisk /dev/sdX
     
-Type "r" to enter "Recovery/Transformation" mode.
+Type _r_ to enter _Recovery/Transformation_ mode.
 
-Type "h" to create a hybrid MBR and follow to instructions. Add all our partitions to the new MBR and set the bootable flag on the last one.
+Type _h_ to create a hybrid MBR and follow to instructions. Add all our partitions to the new MBR and set the bootable flag on the last one.
 
 
 # Step 3 - Installing Grub
 Grub will be installed twice, once for legacy booting, and once for EFI booting. 
 
-* Mount the second and third partitions on local filesystem (on folders "efi" and "boot" respectively)
+* Mount the second and third partitions on local filesystem (on folders _efi_ and _boot_ respectively)
     
         mkdir efi && mount /dev/sdX2 efi
         mkdir boot && mount /dev/sdX3 boot
@@ -62,7 +62,7 @@ You should see, after booting into the USB, that you are dropped into a grub she
 
 # Step 4 - Adding our ISOs
 
-ISO files can be added to our 4th partition in whatever directory you choose. For this example, I will use the directory "/isos".
+ISO files can be added to our 4th partition in whatever directory you choose. For this example, I will use the directory _/isos_.
 
     mount /dev/sdX4 /mnt
 
@@ -78,15 +78,16 @@ This is the most difficult, and hardest to debug stage. It is very dependant on 
 
 Grub configuration files are very version and distro dependent. It is useful to look at other multiboot projects for inspiration, which can be found at the bottom of this article. It is very useful to extract the grub.cfg from the iso itself, and modify it to allow ISO booting. This is sometimes possible by simply adding one parameter eg. "iso-scan/filename=/path/to/iso"
     
-Add a grub configuration file in the "grub" (or "grub2") folder in our boot partition.     
+Add a _grub.cfg_ configuration file in the _grub_ (or _grub2_) folder in our boot partition.     
 
 We need to tell grub the root partition in which to find isos. 
+
 Get the UUID of the /dev/sdX4 partition:
 
     blkid /dev/sdX4
     
     
-Add this into our new grub.cfg file to set a new "root" as the partition containing the isos:
+Add this into our new grub.cfg file to set a new _root_ as the partition containing the isos:
 
     search --no-floppy --fs-uuid --set=root <UUID_from_above>
     export root
@@ -97,10 +98,20 @@ Set the isopath variable to reflect where we added our ISOs on our 4th partition
     export isopath
  
     
-Add the grub configuration for the required ISOs
+Add the grub configuration for the required ISOs.
+
 The grub config for the above three example isos are as follows:
 
 ```
+# grub.cfg
+
+search --no-floppy --fs-uuid --set=root 1234-5678
+export root
+    
+set isopath=/isos
+export isopath
+
+
 menuentry "Clonezilla Live ${clonezillav} amd64 to RAM" --class clonezilla {
   set isoname="clonezilla-live-2.5.5-38-amd64.iso"
   set isofile="${isopath}/clonezilla/${isoname}"
@@ -133,7 +144,7 @@ menuentry "Ubuntu 18.04 Install Desktop amd64" --class ubuntu {
 }
 ```
 
-This is by far the hardest step and can take quite a bit of tweaking to get correct. Sometimes the names of the "vmlinuz" file or the "initrd" file changes between versions, so it is often neccessary to mount the ISO to find the correct names.
+This is by far the hardest step and can take quite a bit of tweaking to get correct. Sometimes the names of the _vmlinuz_ file or the _initrd_ file changes between versions, so it is often neccessary to mount the ISO to find the correct names.
 
 If everything is done correctly you should now see, and be able to boot into, each of these isos.
 
