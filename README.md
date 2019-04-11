@@ -100,8 +100,7 @@ Set the isopath variable to reflect where we added our ISOs on our 4th partition
 Add the grub configuration for the required ISOs
 The grub config for the above three example isos are as follows:
 
-**Clonezilla**:
-[source]
+```
 menuentry "Clonezilla Live ${clonezillav} amd64 to RAM" --class clonezilla {
   set isoname="clonezilla-live-2.5.5-38-amd64.iso"
   set isofile="${isopath}/clonezilla/${isoname}"
@@ -110,8 +109,6 @@ menuentry "Clonezilla Live ${clonezillav} amd64 to RAM" --class clonezilla {
   initrd (loop)/live/initrd.img
 }
 
-**Centos 7**
-[source]
 menuentry "CentOS 7 Live GNOME" --class centos {
   set isoname="CentOS-7-live-GNOME-x86_64.iso"
   set isofile="${isopath}/centos/${isoname}"
@@ -120,8 +117,6 @@ menuentry "CentOS 7 Live GNOME" --class centos {
   initrd (loop)/isolinux/initrd0.img
 }
 
-**Ubuntu 18.04**
-[source]
 menuentry "Ubuntu 18.04 Live Desktop amd64" --class ubuntu {
   set isoname="ubuntu-18.04-desktop-amd64.iso"
   set isofile="${isopath}/ubuntu/${isoname}"
@@ -136,7 +131,7 @@ menuentry "Ubuntu 18.04 Install Desktop amd64" --class ubuntu {
   linux (loop)/casper/vmlinuz boot=casper iso-scan/filename=${isofile} quiet splash only-ubiquity
   initrd (loop)/casper/initrd.lz
 }
-
+```
 
 This is by far the hardest step and can take quite a bit of tweaking to get correct. Sometimes the names of the "vmlinuz" file or the "initrd" file changes between versions, so it is often neccessary to mount the ISO to find the correct names.
 
@@ -144,4 +139,5 @@ If everything is done correctly you should now see, and be able to boot into, ea
 
 # Other multiboot projects
 https://github.com/mfaerevaag/multibootusb
+
 https://github.com/thias/glim
