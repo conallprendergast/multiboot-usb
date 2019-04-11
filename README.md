@@ -18,10 +18,10 @@ The following packages are required:
 ## Instructions:
 * The USB must use a GPT partition table. This can be achieved using the fdisk "g" command.
 * Four partitions need to be created as follows (fdisk "n" creates a partition, "t" changes type)
-    . BIOS boot partition (GPT type "21686148-6449-6E6F-744E-656564454649", fdisk type 4). 1 MiB, no filesystem
-    . EFI system partition (GPT type "C12A7328-F81F-11D2-BA4B-00A0C93EC93B", fdisk type 1). 200 MiB, vfat filesystem
-    . Linux boot partition (GPT type "0FC63DAF-8483-4772-8E79-3D69D8477DE4", fdisk type 20). 100MiB, vfat filesystem
-    . Data partition (GPT type "0FC63DAF-8483-4772-8E79-3D69D8477DE4", fdisk type 20). All remaining space, vfat filesystem
+    - BIOS boot partition (GPT type "21686148-6449-6E6F-744E-656564454649", fdisk type 4). 1 MiB, no filesystem
+    - EFI system partition (GPT type "C12A7328-F81F-11D2-BA4B-00A0C93EC93B", fdisk type 1). 200 MiB, vfat filesystem
+    - Linux boot partition (GPT type "0FC63DAF-8483-4772-8E79-3D69D8477DE4", fdisk type 20). 100MiB, vfat filesystem
+    - Data partition (GPT type "0FC63DAF-8483-4772-8E79-3D69D8477DE4", fdisk type 20). All remaining space, vfat filesystem
     
     
 It is also possible to combine the "Linux boot" partition and the "data" partition into one, if you want to have the grub files and isos on the same partition, but for the purposes of this guide we will assume that the intention is to store the boot files and isos on seperate partitions.
