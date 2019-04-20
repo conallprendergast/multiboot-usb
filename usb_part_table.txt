@@ -1,0 +1,12 @@
+label: gpt
+label-id: A8EA0B29-7113-8946-815E-921BAEFF8ADA
+device: /dev/sdb
+unit: sectors
+first-lba: 2048
+last-lba: 120127454
+
+/dev/sdb1 : start=        2048, size=        2048, type=21686148-6449-6E6F-744E-656564454649, uuid=EE8E41F3-271B-6B4D-AC5F-A19300118440
+/dev/sdb2 : start=        4096, size=      409600, type=C12A7328-F81F-11D2-BA4B-00A0C93EC93B, uuid=87275C59-D03A-A24E-BFD6-3BE7EBBCE088, name="EFI"
+/dev/sdb3 : start=      413696, size=    65902592, type=0FC63DAF-8483-4772-8E79-3D69D8477DE4, uuid=50926B00-F40B-8F4E-940F-CA8170D631B7, name="boot"
+/dev/sdb4 : start=    66320384, size=    20971520, type=0FC63DAF-8483-4772-8E79-3D69D8477DE4, uuid=87FF0DE1-B145-DC4B-86D5-D56C6E076B5C, name="casper-rw"
+/dev/sdb5 : start=    87291904, size=    32833536, type=0FC63DAF-8483-4772-8E79-3D69D8477DE4, uuid=054BE910-E05F-9B44-BEC2-784663F116AE, attrs="LegacyBIOSBootable"
